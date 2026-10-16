@@ -1,0 +1,30 @@
+name: Build Native iOS App
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-14
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+
+      - name: Run Swift Package Tests
+        working-directory: ios
+        run: swift test
+
+      - name: Build BreakPulse iOS Target
+        working-directory: ios
+        run: |
+          xcodebuild build \
+            -scheme BreakPulseCore \
+            -destination "generic/platform=iOS Simulator" \
+            CODE_SIGNING_ALLOWED=NO

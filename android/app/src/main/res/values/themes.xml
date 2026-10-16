@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.BreakPulse" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">#0B0F17</item>
+        <item name="android:navigationBarColor">#121826</item>
+    </style>
+</resources>

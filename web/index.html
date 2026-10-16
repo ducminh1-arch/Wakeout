@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wakeout! - Active Breaks & Exercise Games</title>
+  <meta name="description" content="1-minute movement games right at your desk. Daily challenges, 3k+ desk stretches, and gentle wiggle reminders.">
+
+  <!-- Google Fonts Nunito & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900;1000&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Outer Showcase Header Bar -->
+  <header class="showcase-header">
+    <div class="showcase-brand">
+      <img src="favicon.png" alt="Wakeout Logo" style="width:38px;height:38px;border-radius:10px;box-shadow:0 4px 14px rgba(255,107,0,0.45);flex-shrink:0;">
+      <div class="brand-text-block">
+        <h1>Wakeout! Exercise Games</h1>
+        <p>Active breaks at your desk • Apple App of the Year</p>
+      </div>
+    </div>
+    <div class="showcase-controls">
+      <button id="btn-device-view" class="pill-toggle-btn">
+        <span>📱</span>
+        <span id="view-mode-label">Fullscreen Mode</span>
+      </button>
+      <button id="btn-sound-toggle" class="pill-toggle-btn">
+        <span id="sound-icon">🔊</span>
+        <span>Sound</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- iPhone 16 Pro Frame Simulator -->
+  <div class="device-container" id="device-container">
+    <div class="phone-screen">
+      <!-- Dynamic Island -->
+      <div class="dynamic-island">
+        <div class="dynamic-island-cam"></div>
+        <span style="font-size: 10px; color: #4ADE80;">● REC</span>
+        <div class="dynamic-island-sensor"></div>
+      </div>
+
+      <!-- iOS Status Bar -->
+      <div class="phone-status-bar">
+        <span class="status-time" id="status-clock">12:32</span>
+        <div class="status-icons">
+          <span>5G</span>
+          <span>📶</span>
+          <span>🔋</span>
+        </div>
+      </div>
+
+      <!-- App Viewports Container -->
+      <div class="phone-content">
+
+        <!-- ==============================================
+             SCREEN 1: AR MOTION GAME (1-Minute Game)
+        ============================================== -->
+        <section id="view-game" class="phone-view active">
+          <div class="game-screen-wrapper">
+            <video id="webcam-video" autoplay playsinline muted></video>
+            <canvas id="skeleton-canvas"></canvas>
+            <canvas id="game-canvas"></canvas>
+
+            <!-- Wakeout HUD Overlay -->
+            <div class="wakeout-game-hud">
+              <!-- Score & Multiplier like in sample screenshot: 56 x28 -->
+              <div class="hud-score-badge">
+                <span class="hud-score-number" id="game-hud-score">56</span>
+                <span class="hud-score-multiplier" id="game-hud-multiplier">x28</span>
+              </div>
+              <!-- Timer / Round -->
+              <div class="hud-time-badge">
+                <span>⏱️</span>
+                <span id="game-hud-time">60s</span>
+              </div>
+            </div>
+
+            <!-- Wave 6 Banner (Authentic Wakeout Style) -->
+            <div class="wave-indicator-banner" id="game-wave-banner">
+              WAVE 6
+            </div>
+
+            <!-- Bottom Action Floating Bar -->
+            <div class="game-floating-bar">
+              <button class="game-btn-round" id="btn-cam-switch" title="Toggle Camera">📷</button>
+              <button class="btn-game-play" id="btn-start-game">
+                <span>▶️</span>
+                <span id="btn-game-label">START (1 MIN)</span>
+              </button>
+              <button class="game-btn-round" id="btn-sound-sfx" title="SFX Mode">⚡</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             SCREEN 2: DAILY CHALLENGE (Daily Challenge • 45s)
+        ============================================== -->
+        <section id="view-challenge" class="phone-view">
+          <div class="daily-challenge-screen">
+            <div class="challenge-top-banner">
+              <div class="challenge-badge-pill">DAILY CHALLENGE • 45 SEC</div>
+              <div class="challenge-title-big">Single-Leg Balance</div>
+              <div style="font-size: 13px; color: rgba(255,255,255,0.9); margin-top: 4px;">
+                Lift one leg and balance • Activate your core & brain!
+              </div>
+            </div>
+
+            <div class="challenge-cam-container">
+              <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #FFF; background: rgba(0,0,0,0.5);">
+                <div style="font-size: 72px; margin-bottom: 8px;">🦩</div>
+                <div style="font-size: 18px; font-weight: 900; margin-bottom: 4px;" id="balance-status-text">Detecting posture...</div>
+                <div style="font-size: 13px; color: #94A3B8;">Lift your right leg and hold still</div>
+              </div>
+
+              <!-- Bottom Floating Progress -->
+              <div class="challenge-hud-overlay">
+                <div>
+                  <div style="font-size: 12px; font-weight: 800; color: var(--text-secondary);">HOLD TIME</div>
+                  <div style="font-size: 26px; font-weight: 900; color: var(--wakeout-orange);" id="challenge-time-digits">32s / 45s</div>
+                </div>
+                <button class="btn-start-big-green" id="btn-start-challenge" style="padding: 10px 20px;">
+                  Start
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             SCREEN 3: 3k+ ROUTINES (Desk Stretches, Shakes & Jumps)
+        ============================================== -->
+        <section id="view-routines" class="phone-view">
+          <div class="routines-view-wrapper">
+            <div class="screen-header-bar">
+              <div class="screen-header-title">3k+ Desk Stretches</div>
+              <div style="font-size: 13px; font-weight: 800; color: var(--text-secondary);">2 of 28</div>
+            </div>
+
+            <!-- Hero Featured Exercise Card -->
+            <div class="featured-routine-card" id="hero-routine-card">
+              <div class="routine-badge-tag">UPPER BODY DESK RELIEF</div>
+              <div class="routine-hero-title" id="hero-routine-title">Neck Lateral Stretch</div>
+              <div class="routine-hero-desc" id="hero-routine-desc">
+                Sit upright in your chair, gently tilt your head toward your right shoulder for 15s, then switch sides.
+              </div>
+
+              <!-- Visual Stage with Animated Mascot Guide -->
+              <div class="routine-anim-stage">
+                <svg class="character-chair-svg" viewBox="0 0 160 160" fill="none">
+                  <!-- Chair -->
+                  <rect x="50" y="85" width="60" height="12" rx="4" fill="#334155"/>
+                  <rect x="55" y="45" width="50" height="40" rx="6" fill="#475569"/>
+                  <rect x="76" y="97" width="8" height="35" fill="#1E293B"/>
+                  <circle cx="80" cy="132" r="6" fill="#0F172A"/>
+                  <!-- Green Mascot Body sitting -->
+                  <circle cx="80" cy="55" r="22" fill="#58CC02"/>
+                  <ellipse cx="80" cy="80" rx="18" ry="14" fill="#46A302"/>
+                  <!-- Headband -->
+                  <rect x="62" y="48" width="36" height="6" rx="2" fill="#FFC800"/>
+                  <!-- Smile & Eyes -->
+                  <circle cx="74" cy="56" r="2.5" fill="#000"/>
+                  <circle cx="86" cy="56" r="2.5" fill="#000"/>
+                  <path d="M76 63 Q80 67 84 63" stroke="#000" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+
+              <div class="routine-meta-row">
+                <span style="font-size: 13px; font-weight: 800; color: var(--text-secondary);">⏱️ 30 Seconds</span>
+                <button class="btn-start-big-green" id="btn-hero-play">Start Now</button>
+              </div>
+            </div>
+
+            <!-- Sub Routines Horizontal Slider -->
+            <div style="font-size: 14px; font-weight: 900; margin-bottom: 10px;">Quick Stretches</div>
+            <div class="sub-routines-scroll" id="sub-routines-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             SCREEN 4: WIGGLE REMINDER (Gentle Wiggle Reminder)
+        ============================================== -->
+        <section id="view-reminder" class="phone-view">
+          <div class="reminder-screen-wrapper">
+            <!-- Toast notification prompt on top like sample screenshot -->
+            <div class="wiggle-toast-popup">
+              <div class="toast-bell-circle">🔔</div>
+              <div>
+                <div class="toast-text-title">Time to wiggle!</div>
+                <div class="toast-text-desc">Let's play a game!</div>
+              </div>
+            </div>
+
+            <!-- Big Main Wiggle Card -->
+            <div class="wiggle-main-card">
+              <div class="wiggle-card-title">Wiggle Reminder</div>
+              <div class="wiggle-card-subtitle" id="reminder-subtitle-text">Every 30 min • 1st round</div>
+
+              <!-- Giant Circular Countdown (Orange ring like Wakeout) -->
+              <div class="giant-timer-container">
+                <svg class="giant-timer-svg" viewBox="0 0 220 220">
+                  <circle class="giant-timer-bg" cx="110" cy="110" r="96"></circle>
+                  <circle id="giant-timer-bar" class="giant-timer-stroke" cx="110" cy="110" r="96"></circle>
+                </svg>
+                <div class="giant-timer-digits">
+                  <div class="digits-big" id="giant-countdown-digits">29:53</div>
+                  <div class="digits-label">until your next wiggle</div>
+                </div>
+              </div>
+
+              <div class="wiggle-interval-selector">
+                <button class="interval-pill" data-min="20">20 min</button>
+                <button class="interval-pill active" data-min="30">30 min</button>
+                <button class="interval-pill" data-min="45">45 min</button>
+                <button class="interval-pill" data-min="60">60 min</button>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; width: 100%; margin-top: 20px;">
+              <button class="btn-start-big-green" id="btn-trigger-now" style="flex: 1; background: var(--wakeout-orange); box-shadow: var(--shadow-orange-btn);">
+                Wiggle Now!
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             SCREEN 5: WATTS & STATS (Lifetime Watts & Activity Log)
+        ============================================== -->
+        <section id="view-stats" class="phone-view">
+          <div class="stats-screen-wrapper">
+            <div class="screen-header-bar">
+              <div class="screen-header-title">Watts</div>
+              <div style="display: flex; gap: 8px;">
+                <span style="font-size: 13px; font-weight: 800; color: var(--wakeout-green);">Activity Log</span>
+              </div>
+            </div>
+
+            <!-- Watts Circular Progress Card (Exact Sample App Layout) -->
+            <div class="watts-ring-card">
+              <div class="watts-circular-display">
+                <svg viewBox="0 0 170 170" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                  <circle cx="85" cy="85" r="70" fill="none" stroke="#F1F5F9" stroke-width="12"></circle>
+                  <circle cx="85" cy="85" r="70" fill="none" stroke="var(--wakeout-green)" stroke-width="12" stroke-linecap="round" stroke-dasharray="440" stroke-dashoffset="120"></circle>
+                </svg>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                  <div class="watts-number-huge">
+                    <span id="watts-today-num">318</span>
+                    <span style="font-size: 20px;">⚡</span>
+                  </div>
+                  <div class="watts-goal-sub">of 1,100 today</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 Stats Boxes Grid -->
+            <div class="three-stats-grid">
+              <div class="stat-box-card">
+                <div class="stat-box-num" style="color: var(--wakeout-orange);">3</div>
+                <div class="stat-box-label">Day Streak</div>
+              </div>
+              <div class="stat-box-card">
+                <div class="stat-box-num" style="color: var(--wakeout-green);">1,203</div>
+                <div class="stat-box-label">Workouts Completed</div>
+              </div>
+              <div class="stat-box-card">
+                <div class="stat-box-num" style="color: var(--wakeout-blue);">29</div>
+                <div class="stat-box-label">Challenges Completed</div>
+              </div>
+            </div>
+
+            <!-- Lifetime Watts Banner -->
+            <div class="lifetime-watts-banner">
+              <div>
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-secondary);">LIFETIME WATTS</div>
+                <div class="lifetime-val">⚡ 971,388</div>
+              </div>
+              <div style="font-size: 32px;">🏆</div>
+            </div>
+
+            <!-- Calendar Heatmap -->
+            <div class="calendar-heatmap-card">
+              <div class="calendar-header">
+                <span>Active Days</span>
+                <span style="color: var(--text-secondary);">October 2026</span>
+              </div>
+              <div class="calendar-grid-days">
+                <div class="cal-day-cell">Mon</div>
+                <div class="cal-day-cell">Tue</div>
+                <div class="cal-day-cell">Wed</div>
+                <div class="cal-day-cell">Thu</div>
+                <div class="cal-day-cell">Fri</div>
+                <div class="cal-day-cell">Sat</div>
+                <div class="cal-day-cell">Sun</div>
+
+                <div class="cal-day-cell active-workout">1</div>
+                <div class="cal-day-cell active-workout">2</div>
+                <div class="cal-day-cell active-workout">3</div>
+                <div class="cal-day-cell active-workout">4</div>
+                <div class="cal-day-cell active-workout">5</div>
+                <div class="cal-day-cell">6</div>
+                <div class="cal-day-cell">7</div>
+                <div class="cal-day-cell active-workout">8</div>
+                <div class="cal-day-cell active-workout">9</div>
+                <div class="cal-day-cell active-workout">10</div>
+                <div class="cal-day-cell active-workout">11</div>
+                <div class="cal-day-cell active-workout">12</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- iOS Bottom Navigation Bar (5 Signature Tabs in English) -->
+      <nav class="phone-bottom-nav">
+        <button class="nav-tab-item active" data-view="view-game">
+          <span class="nav-icon">🎮</span>
+          <span>1-Min</span>
+        </button>
+        <button class="nav-tab-item" data-view="view-challenge">
+          <span class="nav-icon">🏆</span>
+          <span>Challenge</span>
+        </button>
+        <button class="nav-tab-item" data-view="view-routines">
+          <span class="nav-icon">🧘</span>
+          <span>Stretches</span>
+        </button>
+        <button class="nav-tab-item" data-view="view-reminder">
+          <span class="nav-icon">⏰</span>
+          <span>Reminder</span>
+        </button>
+        <button class="nav-tab-item" data-view="view-stats">
+          <span class="nav-icon">⚡</span>
+          <span>Watts</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="audio.js"></script>
+  <script src="motion.js"></script>
+  <script src="games.js"></script>
+  <script src="routines.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

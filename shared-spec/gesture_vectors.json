@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "description": "Cross-platform test vectors for gesture recognition (iOS Swift & Android Kotlin)",
+  "coordinate_system": "origin top-left, x right (mirrored), y down, normalized 0..1",
+  "baseline": {
+    "midX": 0.5,
+    "shoulderWidth": 0.30
+  },
+  "config": {
+    "sway_threshold": 0.35,
+    "sway_release_threshold": 0.20,
+    "punch_velocity_threshold": 3.0,
+    "punch_cooldown_seconds": 0.30
+  },
+  "cases": [
+    {
+      "name": "sway_right_clear",
+      "description": "User leans right, midX moves from 0.50 to 0.62. delta = +0.12, normalized = +0.40 > 0.35",
+      "frames": [
+        {
+          "t": 0.00,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 }
+          }
+        },
+        {
+          "t": 0.033,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.47, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.77, "y": 0.50, "confidence": 0.95 }
+          }
+        }
+      ],
+      "expect_last": "SWAY_RIGHT"
+    },
+    {
+      "name": "sway_left_clear",
+      "description": "User leans left, midX moves from 0.50 to 0.38. delta = -0.12, normalized = -0.40 < -0.35",
+      "frames": [
+        {
+          "t": 0.00,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 }
+          }
+        },
+        {
+          "t": 0.033,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.23, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.53, "y": 0.50, "confidence": 0.95 }
+          }
+        }
+      ],
+      "expect_last": "SWAY_LEFT"
+    },
+    {
+      "name": "sway_below_threshold",
+      "description": "User slight wiggle, delta = +0.02, normalized = +0.067 < 0.35",
+      "frames": [
+        {
+          "t": 0.00,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 }
+          }
+        },
+        {
+          "t": 0.033,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.37, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.67, "y": 0.50, "confidence": 0.95 }
+          }
+        }
+      ],
+      "expect_last": "NONE"
+    },
+    {
+      "name": "punch_up_right",
+      "description": "Right wrist shoots upwards above right shoulder at high velocity within 100ms",
+      "frames": [
+        {
+          "t": 0.00,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_WRIST": { "x": 0.65, "y": 0.62, "confidence": 0.90 }
+          }
+        },
+        {
+          "t": 0.10,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_WRIST": { "x": 0.67, "y": 0.28, "confidence": 0.90 }
+          }
+        }
+      ],
+      "expect_last": "PUNCH_RIGHT"
+    },
+    {
+      "name": "punch_up_left",
+      "description": "Left wrist shoots upwards above left shoulder at high velocity within 100ms",
+      "frames": [
+        {
+          "t": 0.00,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 },
+            "LEFT_WRIST": { "x": 0.35, "y": 0.62, "confidence": 0.90 }
+          }
+        },
+        {
+          "t": 0.10,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 },
+            "LEFT_WRIST": { "x": 0.33, "y": 0.28, "confidence": 0.90 }
+          }
+        }
+      ],
+      "expect_last": "PUNCH_LEFT"
+    },
+    {
+      "name": "punch_downward_ignored",
+      "description": "Wrist moves fast but remains BELOW shoulder (y > shoulder.y) -> should be ignored",
+      "frames": [
+        {
+          "t": 0.00,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_WRIST": { "x": 0.65, "y": 0.60, "confidence": 0.90 }
+          }
+        },
+        {
+          "t": 0.10,
+          "joints": {
+            "LEFT_SHOULDER": { "x": 0.35, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_SHOULDER": { "x": 0.65, "y": 0.50, "confidence": 0.95 },
+            "RIGHT_WRIST": { "x": 0.65, "y": 0.90, "confidence": 0.90 }
+          }
+        }
+      ],
+      "expect_last": "NONE"
+    }
+  ]
+}

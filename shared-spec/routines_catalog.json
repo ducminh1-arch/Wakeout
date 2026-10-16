@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "app_name_placeholder": "BreakPulse",
+  "total_mvp_routines": 12,
+  "categories": [
+    { "id": "neck_shoulders", "name_vi": "Cổ & Vai", "name_en": "Neck & Shoulders" },
+    { "id": "wrists_hands", "name_vi": "Cổ tay & Ngón tay", "name_en": "Wrists & Hands" },
+    { "id": "spine_back", "name_vi": "Lưng & Cột sống", "name_en": "Spine & Back" },
+    { "id": "eyes_mind", "name_vi": "Mắt & Hơi thở", "name_en": "Eyes & Breathing" },
+    { "id": "legs_circulation", "name_vi": "Chân & Lưu thông máu", "name_en": "Legs & Circulation" }
+  ],
+  "routines": [
+    {
+      "id": "desk_neck_side_stretch",
+      "title_vi": "Nghiêng Đầu Kéo Giãn Cơ Cổ",
+      "title_en": "Neck Lateral Stretch",
+      "category": "neck_shoulders",
+      "duration_seconds": 30,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Ngồi thẳng lưng, từ từ nghiêng đầu sang vai phải, giữ 15 giây rồi đổi bên. Cảm nhận độ căng nhẹ ở cơ cổ bên đối diện.",
+      "instructions_en": "Sit upright, gently tilt your head toward your right shoulder for 15s, then switch sides. Feel the gentle stretch.",
+      "target_muscles": ["trapezius", "levator_scapulae"]
+    },
+    {
+      "id": "shoulder_rolls",
+      "title_vi": "Xoay Khớp Vai Thả Lỏng",
+      "title_en": "Shoulder Blade Rolls",
+      "category": "neck_shoulders",
+      "duration_seconds": 30,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Xoay hai vai về phía trước 10 lần, sau đó xoay ngược lại về phía sau 10 lần với biên độ tối đa.",
+      "instructions_en": "Roll both shoulders backward in big circles 10 times, then reverse direction.",
+      "target_muscles": ["deltoids", "upper_back"]
+    },
+    {
+      "id": "chin_tuck_relief",
+      "title_vi": "Rụt Cằm Chỉnh Dáng Đốt Sống",
+      "title_en": "Chin Tucks Posture Fix",
+      "category": "neck_shoulders",
+      "duration_seconds": 30,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Nhìn thẳng, nhẹ nhàng thu cằm về phía sau tạo cằm đôi. Giữ 3 giây rồi thả lỏng. Lặp lại 6 lần.",
+      "instructions_en": "Look straight ahead and gently tuck your chin inward like making a double chin. Hold for 3s, repeat 6 times.",
+      "target_muscles": ["deep_cervical_flexors"]
+    },
+    {
+      "id": "wrist_prayer_stretch",
+      "title_vi": "Giãn Cổ Tay Chắp Tay",
+      "title_en": "Prayer Wrist Stretch",
+      "category": "wrists_hands",
+      "duration_seconds": 45,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Chắp hai lòng bàn tay trước ngực, hạ dần bàn tay xuống thắt lưng cho đến khi cảm thấy cổ tay căng dễ chịu.",
+      "instructions_en": "Place palms together in front of your chest and slowly lower them down until you feel a gentle forearm stretch.",
+      "target_muscles": ["wrist_flexors"]
+    },
+    {
+      "id": "finger_claw_release",
+      "title_vi": "Mở Nắm Khớp Ngón Tay Gõ Phím",
+      "title_en": "Finger Claw & Shake",
+      "category": "wrists_hands",
+      "duration_seconds": 30,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Nắm chặt bàn tay thành nắm đấm trong 2 giây, sau đó bung xòe các ngón tay tối đa. Kết thúc bằng lắc nhẹ hai cổ tay.",
+      "instructions_en": "Make a tight fist for 2s, then spread your fingers wide. Shake your hands gently to release tension.",
+      "target_muscles": ["extensor_digitorum"]
+    },
+    {
+      "id": "seated_spinal_twist",
+      "title_vi": "Vặn Mình Trên Ghế Văn Phòng",
+      "title_en": "Seated Chair Twist",
+      "category": "spine_back",
+      "duration_seconds": 45,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Đặt tay phải lên lưng ghế, tay trái lên đầu gối phải, xoay thân trên sang phải và nhìn qua vai. Đổi bên sau 20 giây.",
+      "instructions_en": "Place your right hand on the back of your chair, twist your torso gently to the right. Switch sides after 20s.",
+      "target_muscles": ["thoracic_spine", "obliques"]
+    },
+    {
+      "id": "seated_cat_cow",
+      "title_vi": "Mèo - Bò Biến Thể Ngồi Ghế",
+      "title_en": "Seated Cat-Cow Stretch",
+      "category": "spine_back",
+      "duration_seconds": 45,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Hít vào: ưỡn ngực, ngửa nhẹ đầu nhìn lên. Thở ra: cuộn tròn lưng, cúi đầu nhìn rốn. Thực hiện nhịp nhàng theo hơi thở.",
+      "instructions_en": "Inhale: arch your back and open chest. Exhale: round your spine and tuck chin to chest.",
+      "target_muscles": ["erector_spinae", "pectoralis"]
+    },
+    {
+      "id": "overhead_sky_reach",
+      "title_vi": "Đan Tay Vươn Dài Cột Sống",
+      "title_en": "Overhead Sky Reach",
+      "category": "spine_back",
+      "duration_seconds": 30,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Đan các ngón tay vào nhau, lật lòng bàn tay hướng lên trần nhà và vươn người cao nhất có thể trong 30 giây.",
+      "instructions_en": "Interlace your fingers, push your palms toward the ceiling, and lengthen your entire spine.",
+      "target_muscles": ["latissimus_dorsi", "intercostals"]
+    },
+    {
+      "id": "eye_20_20_relief",
+      "title_vi": "Quy Tắc 20-20-20 Thư Giãn Mắt",
+      "title_en": "20-20-20 Eye Rest",
+      "category": "eyes_mind",
+      "duration_seconds": 30,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Rời mắt khỏi màn hình, nhìn vào một vật ở xa ít nhất 6 mét (20 feet) trong 20 giây và chớp mắt chậm 5 lần.",
+      "instructions_en": "Look away from the screen at an object at least 20 feet away for 20 seconds. Blink slowly 5 times.",
+      "target_muscles": ["extraocular_muscles"]
+    },
+    {
+      "id": "box_breathing_reset",
+      "title_vi": "Hít Thở Hộp 4 Thì Giảm Căng Thẳng",
+      "title_en": "Box Breathing Reset",
+      "category": "eyes_mind",
+      "duration_seconds": 60,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Hít vào 4 giây -> Giữ hơi 4 giây -> Thở ra 4 giây -> Giữ hơi 4 giây. Giúp nhịp tim ổn định và giảm stress tức thì.",
+      "instructions_en": "Inhale 4s -> Hold 4s -> Exhale 4s -> Hold 4s. Instantly calms your nervous system.",
+      "target_muscles": ["diaphragm"]
+    },
+    {
+      "id": "seated_knee_tucks",
+      "title_vi": "Nâng Gối Kích Hoạt Cơ Bụng",
+      "title_en": "Seated Knee Tucks",
+      "category": "legs_circulation",
+      "duration_seconds": 45,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Giữ chặt hai bên mép ghế, nâng luân phiên từng đầu gối lên cao hướng về phía ngực. Làm 15 nhịp mỗi bên.",
+      "instructions_en": "Hold chair edges and lift alternating knees toward your chest. Perform 15 reps per leg.",
+      "target_muscles": ["hip_flexors", "lower_abs"]
+    },
+    {
+      "id": "seated_calf_raises",
+      "title_vi": "Nhón Gót Chân Bơm Máu Tĩnh Mạch",
+      "title_en": "Seated Calf Pump",
+      "category": "legs_circulation",
+      "duration_seconds": 45,
+      "posture": "seated",
+      "requires_camera": false,
+      "instructions_vi": "Đặt hai bàn chân phẳng trên sàn, nhón gót chân lên cao nhất có thể rồi hạ xuống nhịp nhàng để kích thích tuần hoàn máu.",
+      "instructions_en": "Keep feet on the floor and rhythmically lift your heels as high as possible to pump venous blood back up.",
+      "target_muscles": ["gastrocnemius", "soleus"]
+    }
+  ]
+}

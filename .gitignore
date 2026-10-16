@@ -1,0 +1,10 @@
+*.aab
+.gradle/
+build/
+local.properties
+.idea/
+node_modules/
+xcuserdata/
+DerivedData/
+Pods/
+.DS_Store

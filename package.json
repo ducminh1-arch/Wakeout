@@ -1,0 +1,22 @@
+{
+  "name": "breakpulse",
+  "version": "1.0.0",
+  "description": "Gamified micro-workouts & desk breaks powered by computer vision motion tracking",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node shared-spec/run_tests.js",
+    "open": "powershell Start-Process http://localhost:3000"
+  },
+  "keywords": [
+    "micro-workout",
+    "gamified-fitness",
+    "computer-vision",
+    "mediapipe",
+    "wakeout",
+    "desk-exercise"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

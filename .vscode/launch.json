@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch BreakPulse Server",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/server.js",
+      "console": "integratedTerminal",
+      "restart": true
+    },
+    {
+      "name": "Run Gesture Vector Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/shared-spec/run_tests.js",
+      "console": "integratedTerminal"
+    }
+  ]
+}
